@@ -42,7 +42,7 @@ local function teleportToCoins()
         for _, coin in ipairs(coinsModel:GetChildren()) do
             if coin:IsA("Part") then
                 player.Character.HumanoidRootPart.CFrame = coin.CFrame
-                wait(2) -- Пауза между телепортациями
+                wait(0.0001) -- Пауза между телепортациями
             end
         end
     end
@@ -53,7 +53,7 @@ startButton.MouseButton1Click:Connect(function()
     autoFarming = true
     while autoFarming do
         teleportToCoins()
-        wait(0.001)
+        wait(2)
     end
 end)
 
