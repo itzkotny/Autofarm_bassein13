@@ -42,7 +42,7 @@ local function teleportToCoins()
         for _, coin in ipairs(coinsModel:GetChildren()) do
             if coin:IsA("Part") then
                 player.Character.HumanoidRootPart.CFrame = coin.CFrame
-                wait(0.1) -- Пауза между телепортациями
+                wait(2) -- Пауза между телепортациями
             end
         end
     end
@@ -53,7 +53,7 @@ startButton.MouseButton1Click:Connect(function()
     autoFarming = true
     while autoFarming do
         teleportToCoins()
-        wait(0.1)
+        wait(0.001)
     end
 end)
 
@@ -75,7 +75,7 @@ minimizeButton.MouseButton1Click:Connect(function()
     toggleButton.Position = UDim2.new(0, 10, 0.5, -25)
     toggleButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     toggleButton.Text = "Показать"
-	toggleButton.Draggable = true
+    toggleButton.Draggable = true
 
 
     toggleButton.MouseButton1Click:Connect(function()
