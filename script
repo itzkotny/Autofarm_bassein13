@@ -90,5 +90,5 @@ textLabel.Size = UDim2.new(1, 0, 0, 30)
 textLabel.Position = UDim2.new(0, 0, 0, -30)
 textLabel.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 textLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-textLabel.Text = "Автоферма от t.me/itzkotny_scripts"
+textLabel.Text = "Автоферма от t.me/itzkotny_scripts v1.0"
 textLabel.TextScaled = true
