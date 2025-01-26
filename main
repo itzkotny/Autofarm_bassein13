@@ -1,0 +1,94 @@
+local player = game.Players.LocalPlayer
+local gui = Instance.new("ScreenGui", player.PlayerGui)
+
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 300, 0, 200)
+frame.Position = UDim2.new(0.5, -150, 0.5, -100)
+frame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+frame.Active = true
+frame.Draggable = true
+frame.Parent = gui
+
+local closeButton = Instance.new("TextButton", frame)
+closeButton.Size = UDim2.new(0, 30, 0, 30)
+closeButton.Position = UDim2.new(1, -35, 0, 5)
+closeButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+closeButton.Text = "X"
+
+local minimizeButton = Instance.new("TextButton", frame)
+minimizeButton.Size = UDim2.new(0, 30, 0, 30)
+minimizeButton.Position = UDim2.new(1, -70, 0, 5)
+minimizeButton.BackgroundColor3 = Color3.fromRGB(255, 255, 0)
+minimizeButton.Text = "—"
+
+local startButton = Instance.new("TextButton", frame)
+startButton.Size = UDim2.new(0, 100, 0, 50)
+startButton.Position = UDim2.new(0.5, -50, 0.5, -25)
+startButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+startButton.Text = "Начать"
+
+local stopButton = Instance.new("TextButton", frame)
+stopButton.Size = UDim2.new(0, 100, 0, 50)
+stopButton.Position = UDim2.new(0.5, -50, 0.5, 25)
+stopButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+stopButton.Text = "Остановить"
+
+local autoFarming = false
+
+-- Функция для телепортации к частям в модели "Coins"
+local function teleportToCoins()
+    local coinsModel = workspace:FindFirstChild("Coins")
+    if coinsModel then
+        for _, coin in ipairs(coinsModel:GetChildren()) do
+            if coin:IsA("Part") then
+                player.Character.HumanoidRootPart.CFrame = coin.CFrame
+                wait(0.1) -- Пауза между телепортациями
+            end
+        end
+    end
+end
+
+
+startButton.MouseButton1Click:Connect(function()
+    autoFarming = true
+    while autoFarming do
+        teleportToCoins()
+        wait(0.1)
+    end
+end)
+
+
+stopButton.MouseButton1Click:Connect(function()
+    autoFarming = false
+end)
+
+
+closeButton.MouseButton1Click:Connect(function()
+    gui:Destroy()
+end)
+
+
+minimizeButton.MouseButton1Click:Connect(function()
+    frame.Visible = false
+    local toggleButton = Instance.new("TextButton", gui)
+    toggleButton.Size = UDim2.new(0, 50, 0, 50)
+    toggleButton.Position = UDim2.new(0, 10, 0.5, -25)
+    toggleButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    toggleButton.Text = "Показать"
+	toggleButton.Draggable = true
+
+
+    toggleButton.MouseButton1Click:Connect(function()
+        frame.Visible = true
+        toggleButton:Destroy()
+    end)
+end)
+
+
+local textLabel = Instance.new("TextLabel", frame)
+textLabel.Size = UDim2.new(1, 0, 0, 30)
+textLabel.Position = UDim2.new(0, 0, 0, -30)
+textLabel.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+textLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+textLabel.Text = "Автоферма от t.me/itzkotny_scripts"
+textLabel.TextScaled = true
